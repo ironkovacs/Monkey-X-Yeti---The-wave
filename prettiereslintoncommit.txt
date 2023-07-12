@@ -1,0 +1,21 @@
+.husky/pre-commit
+
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run lint-staged && sh ./scripts/githooks/pre-commit.sh
+
+
+
+#######################
+package.json
+
+
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --quiet -c .eslintrc"
+    ],
+    "*.{js,jsx,ts,tsx,json}": [
+      "prettier --config .prettierrc --write"
+    ]
+  },
