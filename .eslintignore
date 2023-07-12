@@ -1,0 +1,48 @@
+**/node_modules
+
+/backend/trx_processing/api/builds
+
+# backend
+# copy pasted 3rd part libraries:
+/backend/trx_shared/worker/vendor
+/backend/trx_shared/types/vendor
+/backend/trx_shared/vendor
+/backend/trx_frontend/url-regex.js
+/backend/trx_data/external/recorder-service.schema.ts
+
+/backend/dist/*
+/backend/python/*
+/backend/aws/*
+
+# Using commonjs in this file, supressing eslint error about it
+/backend/srv_ssr/next.config.js
+
+# frontend
+/frontend/build/
+/frontend/dist/
+/frontend/app/main/vendor
+/frontend/app/main/ng-locales
+/frontend/bower_components
+/frontend/app/static/ng-locales
+/frontend/app/static/editor-languages
+/frontend/test/**/node_modules
+# This does NOT belong here, should be moved to root, and can be handled as a mocha test, which can use ES6 modules.
+/frontend/test/localization/test.js
+
+# frontend-admin
+# Ignore built files
+/frontend-admin/build/
+/frontend-admin/dist/
+/frontend-admin/bower_components
+
+/real-time-tester
+/nginx
+
+# vendor
+/vendor/**/*
+
+# coverage
+/coverage/**/*
+
+# Storybook generated files
+/packages/ui-components/storybook-static/

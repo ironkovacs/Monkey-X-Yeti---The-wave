@@ -1,0 +1,300 @@
+{
+    "root": true,
+    "extends": [
+        "eslint:recommended",
+        "airbnb/base",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        // This must be the last in the list
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint", "import"],
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+            "node": {},
+            "typescript": {
+                "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+                // use <root>/path/to/folder/tsconfig.json
+                "project": "{backend/,frontend/,frontend-admin/,taskmining/,}{srv_!(ssr)/,srv_ssr/,packages/dev-assets/,}tsconfig.json"
+            }
+        }
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        }
+    },
+    "env": {
+        "shared-node-browser": true,
+        "node": true,
+        "browser": true,
+        "worker": true,
+        "mocha": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "rules": {
+        // Disabled AirBnB rules:
+        "no-console": 0,
+        "consistent-return": 0,
+        "no-param-reassign": 0,
+        "prefer-const": 0,
+        "func-names": 0,
+        "no-return-assign": 0,
+        "guard-for-in": 0, // this never causes a bug in modern ES6 apps
+        "no-nested-ternary": 0,
+        "array-callback-return": 0,
+        "arrow-body-style": 0, // this doesn't work with the long promise chains of the backend. you want no braces for short functions but braces for long lines
+        "default-case": 0,
+        "dot-notation": 0,
+        "no-confusing-arrow": 0,
+        "no-else-return": 0, // this is controversial, and I want to use it 90% of the time, but for multi-level if-else structures I have to disable it manually now
+        "radix": 0,
+        "wrap-iife": 0,
+        "no-useless-escape": 0,
+        "no-dupe-class-members": 0, // https://github.com/typescript-eslint/typescript-eslint/issues/291
+        "no-await-in-loop": "off",
+        "no-continue": "off",
+        "prefer-promise-reject-errors": "off",
+        "no-underscore-dangle": "off",
+        "lines-between-class-members": "off",
+        "import/extensions": "off",
+        "import/prefer-default-export": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-plusplus": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "import/order": "off",
+        "class-methods-use-this": "off",
+        "prefer-destructuring": "off",
+        "max-classes-per-file": "off",
+        "no-restricted-syntax": "off",
+        "no-bitwise": "off",
+        "require-yield": "off",
+        "valid-typeof": "off",
+        "no-lonely-if": "off",
+        "no-restricted-properties": "off",
+        "operator-assignment": "off",
+        "global-require": "off",
+        "import/no-dynamic-require": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/ban-types": "off",
+        "import/no-cycle": "off",
+        "import/no-import-module-exports": "off",
+        "grouped-accessor-pairs": "off",
+        "prefer-exponentiation-operator": "off",
+        "import/no-relative-packages": "off",
+
+        "no-unreachable-loop": "warn",
+        "prefer-regex-literals": "warn",
+        "default-case-last": "warn",
+        "default-param-last": "warn",
+        "no-restricted-globals": "warn",
+        "no-return-await": "warn",
+
+        "import/first": "error",
+        "no-extra-boolean-cast": "error",
+        "no-multi-assign": "error",
+        "prefer-object-spread": "error",
+        "strict": "error",
+        "lines-around-directive": "error",
+        "no-void": "error",
+        "no-buffer-constructor": "error",
+        "no-unsafe-optional-chaining": "error",
+        "import/no-named-default": "error",
+        "import/newline-after-import": "error",
+        "no-useless-return": "error",
+        "no-useless-rename": "error",
+        "no-template-curly-in-string": "error",
+        "no-useless-computed-key": "error",
+        "no-shadow": "off", // ts-version should be used
+        "@typescript-eslint/no-shadow": ["error", { "allow": ["_", "stream"] }],
+        "@typescript-eslint/no-unnecessary-type-constraint": "error",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "parameter",
+                "format": null
+            },
+            {
+                "selector": ["class", "interface"],
+                "format": ["PascalCase"]
+            }
+        ],
+
+        // modified AirBnB rules:
+        "eqeqeq": [2, "smart"],
+        "spaced-comment": ["error", "always", { "markers": ["/"] }],
+        "padded-blocks": ["error", { "blocks": "never" }],
+        "new-cap": ["warn", { "capIsNewExceptionPattern": "^Types\\.|BUNDLE\\s*\\." }], // for sequelize Types.STRING(100)
+
+        // TS version replacing ES version of the same rule:
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false,
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
+        ],
+        "no-useless-constructor": "off",
+        "@typescript-eslint/no-useless-constructor": "error",
+        "semi": "off",
+        "@typescript-eslint/semi": ["error"],
+        "quotes": "off",
+        "@typescript-eslint/quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "brace-style": "off",
+        "func-call-spacing": "off",
+        "@typescript-eslint/func-call-spacing": ["error"],
+        "camelcase": "off",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error", { "functions": false }], // it's a common pattern that you write the sub-methods of a method after it. In a class this is always allowed, so why not with plain functions,
+
+        // Rules enforcing ESModules
+        "import/no-commonjs": "error",
+        "import/no-amd": "error",
+
+        // Rules ensuring valid imports
+        "import/no-unresolved": ["error", { "commonjs": true }],
+        "import/named": "error",
+        "import/default": "error",
+        "import/namespace": "error",
+        "import/no-absolute-path": "error",
+        // "import/no-cycle": "error",
+        "import/no-useless-path-segments": "error",
+
+        // Rules ensuring best practices for exports
+        "import/export": "error",
+        "import/no-named-as-default": "error",
+        "import/no-named-as-default-member": "error",
+        "import/no-deprecated": "error",
+        // "import/no-extraneous-dependencies": "error",
+        "import/no-mutable-exports": "error",
+
+        // new TS rules:
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "@typescript-eslint/no-empty-function": "error",
+        // "@typescript-eslint/no-var-requires": "error",
+
+        "react/jsx-uses-vars": "error",
+        "react-hooks/exhaustive-deps": ["warn", {
+            "additionalHooks": "(useCancellableEffect)"
+        }],
+
+        // disabled TS rules:
+        "@typescript-eslint/ban-ts-ignore": "off",
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "@typescript-eslint/consistent-type-assertions": "off",
+        "@typescript-eslint/adjacent-overload-signatures": "off",
+        "no-redeclare": "off",
+        "prefer-spread": "off",
+        "no-unused-expressions": "off",
+
+        // Disabling React specific rules
+        "react/display-name": "off",
+        "react/react-in-jsx-scope": "off"
+    },
+    "overrides": [
+        {
+            "files": ["**/*.ts"],
+            "rules": {
+                "no-undef": 0 // https://github.com/typescript-eslint/typescript-eslint/issues/342
+            }
+        },
+        {
+            "files": [
+                "scripts/*",
+                "test-scripts/*",
+                "licenses/generate.js",
+                "nginx/**/!(dist).[jt]s",
+                "installer/**/*",
+                "installer/*",
+                "backend/serve.js",
+                "backend/scripts/**/*",
+                "backend/admin_scripts/**/*",
+                "backend/srv_ssr/next.config.js",
+                "packages/dev-assets/next.config.js",
+                "taskmining/next.config.js",
+                "frontend/test/*.conf.js",
+                "frontend/app/main/config/application-states.js",
+                "frontend/build-tasks/**/*.js"
+            ],
+            "rules": {
+                "@typescript-eslint/no-var-requires": "off",
+                "import/no-commonjs": "off"
+            }
+        },
+        {
+            "files": ["backend/srv_ssr/**/*", "taskmining/**/*"],
+            "rules": {
+                "react/prop-types": "warn"
+            }
+        },
+        {
+            "files": ["backend/srv_ssr/**/*", "taskmining/**/*", "**/*.js", "packages/dev-assets/**/*"],
+            "rules": {
+                "react/prop-types": "warn",
+                "@typescript-eslint/explicit-function-return-type": "off"
+            }
+        },
+        {
+            "files": ["taskmining/**/*"],
+            "rules": {
+                "@typescript-eslint/class-name-casing": "off",
+                "@typescript-eslint/no-explicit-any": "off",
+                "@typescript-eslint/explicit-module-boundary-types": "off",
+                "@typescript-eslint/no-unused-vars": "off"
+            }
+        },
+        {
+            "files": ["frontend/**/*", "taskmining/**/*", "packages/ui-components/**/*"],
+            "rules": {
+                // Disabling until we change to react
+                "no-prototype-builtins": "off",
+                "getter-return": "off",
+                "react/prop-types": "warn"
+            }
+        },
+        {
+            // Autogenerated TypeScript from OpenAPI/Swagger
+            "files": ["backend/trx_data/external/**/*"],
+            "rules": {
+                "@typescript-eslint/class-name-casing": "off",
+                "@typescript-eslint/no-empty-interface": "off"
+            }
+        },
+        {
+            "files": ["backend/trx_util/thread-local.js"],
+            "rules": {
+                "react-hooks/rules-of-hooks": "off"
+            }
+        },
+        {
+            "files": ["*.js"],
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": ["off"]
+            }
+        }
+    ],
+    "globals": {
+        "$": "readonly",
+        "ENV": "readonly",
+        "moment": "readonly",
+        "__webpack_public_path__": "writable"
+    }
+}

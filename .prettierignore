@@ -1,0 +1,106 @@
+# /node_modules is ignored by default
+**/node_modules
+**/package.json
+**/package-lock.json
+backend/backend_package_lock/backend-package-lock.json
+
+vendor/
+
+# BACKEND
+backend/dist/*
+backend/python/*
+backend/aws/*
+backend/admin_scripts
+backend/trx_data/migration
+backend/trx_processing/api/builds
+backend/trx_shared/worker/vendor
+backend/trx_shared/types/vendor
+backend/trx_shared/vendor
+backend/trx_frontend/url-regex.js
+backend/node_modules/trx_timeline/node_modules/
+backend/node_modules/
+backend/dist/
+backend/coverage
+backend/.nyc_output
+backend/python/venv
+backend/.scannerwork
+backend/version.json
+backend/srv_ssr/out
+backend/csharp_workers/
+backend/native_workers/
+
+# FRONTEND
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/app/main/vendor
+frontend/app/main/ng-locales
+frontend/bower_components
+frontend/app/static
+frontend/test/**/node_modules
+frontend/**/*.js.map
+frontend/test/local.log
+frontend/.scannerwork
+frontend/.nyc_output
+frontend/test/dist/
+
+# FRONTEND-ADMIN
+# Ignore built files
+frontend-admin/build/
+frontend-admin/dist/
+frontend-admin/bower_components
+
+# USUAL GITIGNORE
+allure-results/
+build/
+dist/
+.DS_Store
+.idea/
+.vscode/
+/logs/
+/nginx-conf/
+/nginx-logs/
+/pids/
+.db
+/real-time-tester/dist/
+/real-time-tester/build/
+/files/
+/internal/
+npm-debug.log
+.coverage
+.test_results
+.test_reports
+.nyc_output
+test.sqlite.db
+buildfile.txt
+*.pyc
+__pycache__
+.test_data/
+docker/dumps/
+/db/
+/dumps
+**/timeline.log
+timeline.log
+/storage
+srv_sftp.log
+/volumes
+/temp
+temp/
+*.pem
+.changes/
+.output
+/allure-results/
+/license
+.run/
+.env.local
+
+# nextJS
+.next
+
+# Installer
+installer/.cache
+eula.pdf
+timeline.run
+
+# Real time
+real-time-tester
